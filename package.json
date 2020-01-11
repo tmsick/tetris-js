@@ -18,7 +18,6 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
-    "jstates": "^0.1.6",
     "konva": "^4.1.0",
     "lodash": "^4.17.15",
     "mathjs": "^6.3.0",
