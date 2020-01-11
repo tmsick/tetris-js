@@ -1,6 +1,6 @@
 import React from "react"
 import { Stage, Layer } from "react-konva"
-import Square from "./components/square.jsx"
+import Field from "./components/field.jsx"
 import * as Variants from "./tetromino/variants"
 import Vector from "./vector"
 import Loader from "./loader"
@@ -204,28 +204,18 @@ class Game extends React.Component {
   render() {
     const { mino, squares } = this.state
     const { unit, width, height } = this.field
-    const rects = []
-    for (const { x, y, id } of mino.getVectors()) {
-      rects.push(
-        <Square key={id} unit={unit} x={x} y={y} color={mino.getColor()} />
-      )
-    }
-    for (let x = 0; x < this.field.width; x++) {
-      for (let y = 0; y < this.field.height; y++) {
-        const color = squares[y][x]
-        if (color) {
-          const v = new Vector(x, y)
-          rects.push(
-            <Square key={v.id} unit={unit} x={x} y={y} color={color} />
-          )
-        }
-      }
-    }
-
     return (
       <div tabIndex="0" onKeyDown={this.handleKeyDown}>
         <Stage width={width * unit} height={height * unit}>
-          <Layer>{rects}</Layer>
+          <Layer>
+            <Field
+              unit={unit}
+              width={width}
+              height={height}
+              mino={mino}
+              squares={squares}
+            />
+          </Layer>
         </Stage>
       </div>
     )
