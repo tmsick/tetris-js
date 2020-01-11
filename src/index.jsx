@@ -1,5 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Game from "./game.jsx"
+import Game from "./Game.jsx"
 
 ReactDOM.render(<Game />, document.getElementById("root"))

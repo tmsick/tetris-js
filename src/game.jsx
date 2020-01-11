@@ -1,6 +1,6 @@
 import React from "react"
 import { Stage, Layer } from "react-konva"
-import Field from "./components/field.jsx"
+import Field from "./components/Field.jsx"
 import * as Variants from "./tetromino/variants"
 import Vector from "./vector"
 import Loader from "./loader"

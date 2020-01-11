@@ -1,5 +1,5 @@
 import React from "react"
-import Square from "./square.jsx"
+import Square from "./Square.jsx"
 import Vector from "../vector"
 
 function Field({ unit, width, height, mino, squares }) {
