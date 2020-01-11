@@ -68,7 +68,7 @@ class Tetromino {
   }
 
   getColor() {
-    return "#" + this.color.toString(0x10)
+    return "#" + (this.color + 0x1000000).toString(0x10).slice(1)
   }
 
   //   posture 0      posture 1      posture 2     posture 3
