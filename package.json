@@ -1,0 +1,31 @@
+{
+  "name": "tetris-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "jstates": "^0.1.6",
+    "konva": "^4.1.0",
+    "lodash": "^4.17.15",
+    "mathjs": "^6.3.0",
+    "react-konva": "^16.10.1-0"
+  },
+  "scripts": {
+    "start:build": "webpack",
+    "start:dev": "webpack-dev-server"
+  }
+}
