@@ -1,12 +1,20 @@
 import React from "react"
-import Square from "./Square.jsx"
+import { Group } from "react-konva"
+import OutSetSquare from "./OutsetSquare.jsx"
 import Vector from "../vector"
 
-function Field({ unit, width, height, mino, squares }) {
+function Field({ x, y, unit, width, height, mino, squares }) {
   const rects = []
   for (const { x, y, id } of mino.getVectors()) {
     rects.push(
-      <Square key={id} unit={unit} x={x} y={y} color={mino.getColor()} />
+      <OutSetSquare
+        key={id}
+        x={x * unit}
+        y={y * unit}
+        width={unit}
+        height={unit}
+        fill={mino.getColor()}
+      />
     )
   }
   for (let x = 0; x < width; x++) {
@@ -14,12 +22,25 @@ function Field({ unit, width, height, mino, squares }) {
       const color = squares[y][x]
       if (color) {
         const v = new Vector(x, y)
-        rects.push(<Square key={v.id} unit={unit} x={x} y={y} color={color} />)
+        rects.push(
+          <OutSetSquare
+            key={v.id}
+            x={x * unit}
+            y={y * unit}
+            width={unit}
+            height={unit}
+            fill={color}
+          />
+        )
       }
     }
   }
 
-  return rects
+  return (
+    <Group x={x} y={y} width={width * unit} height={height * unit}>
+      {rects}
+    </Group>
+  )
 }
 
 export default Field

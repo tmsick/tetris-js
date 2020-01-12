@@ -1,6 +1,7 @@
 import React from "react"
 import { Stage, Layer } from "react-konva"
 import Field from "./components/Field.jsx"
+import NextPane from "./components/NextPane.jsx"
 import * as Variants from "./tetromino/variants"
 import Vector from "./vector"
 import Loader from "./loader"
@@ -9,13 +10,15 @@ class Game extends React.Component {
   constructor(props) {
     super(props)
 
-    this.field = { width: 10, height: 20, unit: 30 }
+    this.unit = 30
+    this.field = { width: 10, height: 20 }
+    this.nextPane = { width: 3, stockSize: 3 }
     this.initVector = Object.freeze(
       new Vector(Math.floor((this.field.width + 1) / 2) - 1, 1)
     )
     this.timerInterval = 1000
 
-    const loader = new Loader(Variants, /* stock size */ 3, Variant => {
+    const loader = new Loader(Variants, this.nextPane.stockSize, Variant => {
       const mino = new Variant()
       mino.move(this.initVector)
       return mino
@@ -202,18 +205,34 @@ class Game extends React.Component {
   }
 
   render() {
-    const { mino, squares } = this.state
-    const { unit, width, height } = this.field
+    const { unit } = this
+    const { mino, squares, loader } = this.state
     return (
       <div tabIndex="0" onKeyDown={this.handleKeyDown}>
-        <Stage width={width * unit} height={height * unit}>
+        <Stage
+          width={(this.field.width + this.nextPane.width) * unit}
+          height={
+            (this.field.height > this.nextPane.width * this.nextPane.stockSize
+              ? this.field.height
+              : this.nextPane.width * this.nextPane.stockSize) * unit
+          }
+        >
           <Layer>
             <Field
+              x={0}
+              y={0}
               unit={unit}
-              width={width}
-              height={height}
+              width={this.field.width}
+              height={this.field.height}
               mino={mino}
               squares={squares}
+            />
+            <NextPane
+              x={this.field.width * unit}
+              y={0}
+              width={this.nextPane.width * unit}
+              height={this.nextPane.width * unit * this.nextPane.stockSize}
+              loader={loader}
             />
           </Layer>
         </Stage>
