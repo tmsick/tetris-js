@@ -2,7 +2,7 @@ import React from "react"
 import { Group, Line } from "react-konva"
 import chroma from "chroma-js"
 
-function OutSetSquare({ x, y, width, height, fill }) {
+function OutsetSquare({ x, y, width, height, fill }) {
   const darkFill = chroma(fill)
     .darken()
     .hex()
@@ -58,4 +58,4 @@ function OutSetSquare({ x, y, width, height, fill }) {
   )
 }
 
-export default OutSetSquare
+export default OutsetSquare

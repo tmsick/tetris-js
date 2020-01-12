@@ -1,13 +1,13 @@
 import React from "react"
 import { Group } from "react-konva"
-import OutSetSquare from "./OutsetSquare.jsx"
+import OutsetSquare from "./OutsetSquare.jsx"
 import Vector from "../vector"
 
 function Field({ x, y, unit, width, height, mino, squares }) {
   const rects = []
   for (const { x, y, id } of mino.getVectors()) {
     rects.push(
-      <OutSetSquare
+      <OutsetSquare
         key={id}
         x={x * unit}
         y={y * unit}
@@ -23,7 +23,7 @@ function Field({ x, y, unit, width, height, mino, squares }) {
       if (color) {
         const v = new Vector(x, y)
         rects.push(
-          <OutSetSquare
+          <OutsetSquare
             key={v.id}
             x={x * unit}
             y={y * unit}

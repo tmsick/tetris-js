@@ -4,7 +4,7 @@ import { Group } from "react-konva"
 import Vector from "../vector"
 import { e1, e2 } from "../vector/basis"
 import * as Variants from "../tetromino/variants"
-import OutSetSquare from "./OutsetSquare.jsx"
+import OutsetSquare from "./OutsetSquare.jsx"
 
 export function generateThumbnails() {
   const minoes = []
@@ -49,7 +49,7 @@ export function generateThumbnails() {
     thumbnails[mino.name] = ({ x, y, size }) => (
       <Group x={x} y={y} width={size} height={size}>
         {vectors.map(v => (
-          <OutSetSquare
+          <OutsetSquare
             key={v.id}
             x={v.x * size}
             y={v.y * size}
