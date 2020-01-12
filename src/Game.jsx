@@ -145,7 +145,7 @@ class Game extends React.Component {
   gameOver() {
     this.isGameOver = true
     this.stopClock()
-    console.log("game over")
+    alert("game over")
   }
 
   handleKeyDown(event) {
