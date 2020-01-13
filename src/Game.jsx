@@ -2,6 +2,7 @@ import React from "react"
 import { Stage, Layer } from "react-konva"
 import Field from "./components/Field"
 import NextPane from "./components/NextPane"
+import Modal from "./components/Modal"
 import * as Variants from "./tetromino/variants"
 import Vector from "./vector"
 import Loader from "./loader"
@@ -47,8 +48,17 @@ class Game extends React.Component {
     this.state = { mino, squares, loader }
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.startGame = this.startGame.bind(this)
 
+    this.isModalHidden = false
+    this.isGameVisible = false
     this.isGameOver = false
+  }
+
+  startGame() {
+    this.isModalHidden = true
+    this.isGameVisible = true
+    this.startClock()
   }
 
   moveEast() {
@@ -178,7 +188,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.startClock()
+    // this.startClock()
   }
 
   componentWillUnmount() {
@@ -209,7 +219,13 @@ class Game extends React.Component {
     const { mino, squares, loader } = this.state
     return (
       <div tabIndex="0" onKeyDown={this.handleKeyDown}>
+        <Modal
+          onClick={this.startGame}
+          hidden={this.isModalHidden}
+          message="click to start"
+        />
         <Stage
+          visible={this.isGameVisible}
           width={(this.field.width + this.nextPane.width) * unit}
           height={
             (this.field.height > this.nextPane.width * this.nextPane.stockSize
