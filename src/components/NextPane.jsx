@@ -1,4 +1,3 @@
-import _ from "lodash"
 import React from "react"
 import { Group } from "react-konva"
 import Thumbnails from "./Thumbnails.jsx"
