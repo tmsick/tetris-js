@@ -1,4 +1,4 @@
-import { e1, e2 } from "../vector/basis"
+import { e1, e2 } from "../vector"
 
 class Tetromino {
   constructor(

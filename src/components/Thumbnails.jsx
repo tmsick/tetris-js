@@ -1,8 +1,7 @@
 import _ from "lodash"
 import React from "react"
 import { Group } from "react-konva"
-import Vector from "../vector"
-import { e1, e2 } from "../vector/basis"
+import Vector, { e1, e2 } from "../vector"
 import * as Variants from "../tetromino/variants"
 import OutsetSquare from "./OutsetSquare.jsx"
 
