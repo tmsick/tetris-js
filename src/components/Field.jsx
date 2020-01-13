@@ -1,6 +1,6 @@
 import React from "react"
 import { Group } from "react-konva"
-import OutsetSquare from "./OutsetSquare.jsx"
+import OutsetSquare from "./OutsetSquare"
 import Vector from "../vector"
 
 function Field({ x, y, unit, width, height, mino, squares }) {

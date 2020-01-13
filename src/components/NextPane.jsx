@@ -1,6 +1,6 @@
 import React from "react"
 import { Group } from "react-konva"
-import Thumbnails from "./Thumbnails.jsx"
+import Thumbnails from "./Thumbnails"
 
 function NextPane({ x, y, width, height, loader }) {
   return (

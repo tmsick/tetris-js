@@ -3,7 +3,7 @@ import React from "react"
 import { Group } from "react-konva"
 import Vector, { e1, e2 } from "../vector"
 import * as Variants from "../tetromino/variants"
-import OutsetSquare from "./OutsetSquare.jsx"
+import OutsetSquare from "./OutsetSquare"
 
 export function generateThumbnails() {
   const minoes = []
