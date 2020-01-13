@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { max, min } from "lodash"
 import React from "react"
 import { Group } from "react-konva"
 import Vector, { e1, e2 } from "../vector"
@@ -14,10 +14,10 @@ export function generateThumbnails() {
   let maxHeight = 0
   for (const mino of minoes) {
     const vectors = mino.getVectors()
-    const easternmost = _.max(vectors.map(v => v.x))
-    const westernmost = _.min(vectors.map(v => v.x))
-    const southernmost = _.max(vectors.map(v => v.y))
-    const northernmost = _.min(vectors.map(v => v.y))
+    const easternmost = max(vectors.map(v => v.x))
+    const westernmost = min(vectors.map(v => v.x))
+    const southernmost = max(vectors.map(v => v.y))
+    const northernmost = min(vectors.map(v => v.y))
     const width = easternmost - westernmost
     const height = southernmost - northernmost
     maxWidth = width > maxWidth ? width : maxWidth

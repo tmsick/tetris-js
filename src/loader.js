@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { shuffle } from "lodash"
 
 class Loader {
   constructor(variants, stockSize, hook = variant => variant) {
@@ -18,7 +18,7 @@ class Loader {
 
   fillStock() {
     while (this.stock.length < this.stockSize) {
-      const keys = _.shuffle(this.variantKeys.slice())
+      const keys = shuffle(this.variantKeys.slice())
       this.stock = this.stock.concat(keys.map(key => this.variants[key]))
     }
   }
