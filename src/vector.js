@@ -4,6 +4,11 @@ class Vector {
   constructor(x, y) {
     this.x = x
     this.y = y
+
+    /**
+     * Each vector has its unique, immutable identifier that can be an object's
+     * key or a member of a set.
+     */
     this.id = `__vec__${x}_${y}`
   }
 
@@ -27,7 +32,11 @@ class Vector {
     return new Vector(this.x / scaler, this.y / scaler)
   }
 
+  /**
+   * Rotates the receiver around the origin (0, 0).
+   */
   rotate(theta) {
+    // rotation matrix
     const R = math.matrix([
       [math.cos(theta), -math.sin(theta)],
       [math.sin(theta), math.cos(theta)]

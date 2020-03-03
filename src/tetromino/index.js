@@ -1,15 +1,10 @@
 import { e1, e2 } from "../vector"
 
+/**
+ * Tetromino abstract class
+ */
 class Tetromino {
-  constructor(
-    name,
-    color,
-    shapeVectors,
-    scale,
-    coreIndex,
-    fixPosture = vector => vector,
-    posture = 0
-  ) {
+  constructor(name, color, shapeVectors, scale, coreIndex, fixPosture = vector => vector, posture = 0) {
     this.name = name
     this.color = color
     this.shapeVectors = shapeVectors
@@ -17,20 +12,12 @@ class Tetromino {
     this.coreIndex = coreIndex
     this.fixPosture = fixPosture
     this.posture = posture
-    this.postures = this.genPostures()
+    this.postures = this.generatePostures()
     this.position = e1.mul(0)
   }
 
   copy() {
-    const copied = new Tetromino(
-      this.name,
-      this.color,
-      this.shapeVectors,
-      this.scale,
-      this.coreIndex,
-      this.fixPosture,
-      this.posture
-    )
+    const copied = new Tetromino(this.name, this.color, this.shapeVectors, this.scale, this.coreIndex, this.fixPosture, this.posture)
     copied.move(this.position)
     return copied
   }
@@ -71,36 +58,37 @@ class Tetromino {
     return "#" + (this.color + 0x1000000).toString(0x10).slice(1)
   }
 
-  //   posture 0      posture 1      posture 2     posture 3
-  //
-  //     +---+        +---+                            +---+
-  //     |   |        |   |                            |   |
-  // +---+---+---+    +---+---+    +---+---+---+   +---+---+
-  // |   |   |   |    |   |   |    |   |   |   |   |   |   |
-  // +---+---+---+    +---+---+    +---+---+---+   +---+---+
-  //                  |   |            |   |           |   |
-  //                  +---+            +---+           +---+
-  genPostures() {
-    const shiftVectors = [
-      [0, 0],
-      [0, 1],
-      [1, 1],
-      [1, 0]
-    ]
-      .map(([x, y]) => e1.mul(x).add(e2.mul(y)))
-      .map(v => v.mul(this.scale))
-    const rotUnit = Math.PI / 2
+  /**
+   * Generates 4 postures of the tetromino.
+   *
+   *     +---+        +---+                            +---+
+   *     |   |        |   |                            |   |
+   * +---+---+---+    +---+---+    +---+---+---+   +---+---+
+   * |   |   |   |    |   |   |    |   |   |   |   |   |   |
+   * +---+---+---+    +---+---+    +---+---+---+   +---+---+
+   *                  |   |            |   |           |   |
+   *                  +---+            +---+           +---+
+   *   posture 0      posture 1      posture 2     posture 3
+   */
+  generatePostures() {
+    const shiftVectors = [[0, 0], [0, 1], [1, 1], [1, 0]].map(([x, y]) => e1.mul(x).add(e2.mul(y)).mul(this.scale))
+    const rotationUnit = Math.PI / 2
     const postures = []
-    for (let posture = 0; posture < 4; posture++) {
+    for (let p = 0; p < 4; p++) {
       let vectors = this.shapeVectors
+        // shift the point of view
+        .map(v => v.add(shiftVectors[p]))
+        // rotate, and consequently, the point of view gets back
+        .map(v => v.rotate(rotationUnit * p))
+      const relativeVector = vectors[this.coreIndex]
       vectors = vectors
-        .map(v => v.add(shiftVectors[posture]))
-        .map(v => v.rotate(rotUnit * posture))
-      const normVector = vectors[this.coreIndex]
-      vectors = vectors
-        .map(v => v.sub(normVector))
+        // shift the tetromino to the normalized position
+        .map(v => v.sub(relativeVector))
+        // normalize the scale
         .map(v => v.div(this.scale))
-        .map(v => this.fixPosture(v, posture))
+        // fix for tetromino I and O
+        .map(v => this.fixPosture(v, p))
+        // we can safely round the vectors as all the vectors' coordinates are logically integers
         .map(v => v.round())
       postures.push(vectors)
     }

@@ -1,5 +1,11 @@
 import { shuffle } from "lodash"
 
+/**
+ * A Loader is an intelligent, automatically-filled queue. The loader's queue is
+ * filled with `variants`. The queue's length is equal to or greater than
+ * `size`. The `hook` function is called with the variant as its argument when
+ * the variant is popped out of the queue.
+ */
 class Loader {
   constructor(variants, size, hook = variant => variant) {
     this.variants = variants
