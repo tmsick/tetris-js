@@ -1,14 +1,10 @@
+import chroma from "chroma-js"
 import React from "react"
 import { Group, Line } from "react-konva"
-import chroma from "chroma-js"
 
 function OutsetSquare({ x, y, width, height, fill }) {
-  const darkFill = chroma(fill)
-    .darken()
-    .hex()
-  const lightFill = chroma(fill)
-    .brighten()
-    .hex()
+  const darkFill = chroma(fill).darken().hex()
+  const lightFill = chroma(fill).brighten().hex()
 
   const bezelLength = (width < height ? width : height) / 10
   const upperLeftDot = [bezelLength, bezelLength]
@@ -46,12 +42,7 @@ function OutsetSquare({ x, y, width, height, fill }) {
     <Group x={x} y={y}>
       <Line points={upBezel} fill={lightFill} strokeWidth={0} closed={true} />
       <Line points={leftBezel} fill={lightFill} strokeWidth={0} closed={true} />
-      <Line
-        points={bottomBezel}
-        fill={darkFill}
-        strokeWidth={0}
-        closed={true}
-      />
+      <Line points={bottomBezel} fill={darkFill} strokeWidth={0} closed={true} />
       <Line points={rightBezel} fill={darkFill} strokeWidth={0} closed={true} />
       <Line points={rect} fill={fill} strokeWidth={0} closed={true} />
     </Group>

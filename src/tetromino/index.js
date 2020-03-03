@@ -54,10 +54,6 @@ class Tetromino {
     this.posture = (this.posture + 3) % 4
   }
 
-  getColor() {
-    return "#" + (this.color + 0x1000000).toString(0x10).slice(1)
-  }
-
   /**
    * Generates 4 postures of the tetromino.
    *
