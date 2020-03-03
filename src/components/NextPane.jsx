@@ -5,7 +5,7 @@ import Thumbnails from "./Thumbnails"
 function NextPane({ x, y, width, height, loader }) {
   return (
     <Group x={x} y={y} width={width} height={height}>
-      {loader.stock.slice(0, loader.stockSize).map((mino, i) => {
+      {loader.queue.slice(0, loader.size).map((mino, i) => {
         const Thumb = Thumbnails[mino.name]
         return <Thumb key={i} x={0} y={width * i} size={width} />
       })}

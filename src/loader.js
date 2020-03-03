@@ -1,26 +1,23 @@
 import { shuffle } from "lodash"
 
 class Loader {
-  constructor(variants, stockSize, hook = variant => variant) {
+  constructor(variants, size, hook = variant => variant) {
     this.variants = variants
-    this.variantKeys = Object.keys(variants)
-    this.stockSize = stockSize
+    this.size = size
     this.hook = hook
-    this.stock = []
-    this.fillStock()
+    this.queue = []
+    this.fillQueue()
   }
 
   load() {
-    const variant = this.stock.shift()
-    this.fillStock()
+    const variant = this.queue.shift()
+    this.fillQueue()
     return this.hook(variant)
   }
 
-  fillStock() {
-    while (this.stock.length < this.stockSize) {
-      const keys = shuffle(this.variantKeys.slice())
-      this.stock = this.stock.concat(keys.map(key => this.variants[key]))
-    }
+  fillQueue() {
+    while (this.queue.length < this.size)
+      this.queue = this.queue.concat(shuffle(this.variants))
   }
 }
 
