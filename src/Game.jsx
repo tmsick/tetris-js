@@ -1,7 +1,7 @@
 import React from "react"
 import { Stage, Layer } from "react-konva"
 import Loader from "./loader"
-import { getHexColor, generateArray } from './util'
+import { getHexColor, generateArray } from "./util"
 import Vector from "./vector"
 import Field from "./components/Field"
 import Modal from "./components/Modal"
@@ -16,7 +16,9 @@ class Game extends React.Component {
     this.unit = 30
     this.field = { width: 10, height: 20 }
     this.nextPane = { width: 3, queueSize: 3 }
-    this.initVector = Object.freeze(new Vector(Math.floor((this.field.width + 1) / 2) - 1, 1))
+    this.initVector = Object.freeze(
+      new Vector(Math.floor((this.field.width + 1) / 2) - 1, 1)
+    )
     this.timerInterval = 1000
 
     // loader
@@ -35,7 +37,9 @@ class Game extends React.Component {
     this.verge = Object.freeze(verge)
 
     // squares
-    const squares = generateArray(this.field.height, () => generateArray(this.field.width, null))
+    const squares = generateArray(this.field.height, () =>
+      generateArray(this.field.width, null)
+    )
 
     // mino
     const mino = loader.load()
@@ -63,38 +67,32 @@ class Game extends React.Component {
   moveEast() {
     const mino = this.state.mino.copy()
     mino.moveEast()
-    if (this.canPlace(mino))
-      this.setState({ mino })
+    if (this.canPlace(mino)) this.setState({ mino })
   }
 
   moveWest() {
     const mino = this.state.mino.copy()
     mino.moveWest()
-    if (this.canPlace(mino))
-      this.setState({ mino })
+    if (this.canPlace(mino)) this.setState({ mino })
   }
 
   moveSouth() {
     const mino = this.state.mino.copy()
     mino.moveSouth()
-    if (this.canPlace(mino))
-      this.setState({ mino })
-    else
-      this.settle()
+    if (this.canPlace(mino)) this.setState({ mino })
+    else this.settle()
   }
 
   rotate() {
     const mino = this.state.mino.copy()
     mino.rotateClockwise()
-    if (this.canPlace(mino))
-      this.setState({ mino })
+    if (this.canPlace(mino)) this.setState({ mino })
   }
 
   canPlace(mino, squares = this.state.squares) {
+    // if ( the tetromino is at the edge of the field || the tetromino is touching the accumulated tetrominoes )
     for (const { x, y, id } of mino.getVectors())
-      // if ( the tetromino is at the edge of the field || the tetromino is touching the accumulated tetrominoes )
-      if (this.verge.has(id) || squares[y][x])
-        return false
+      if (this.verge.has(id) || squares[y][x]) return false
     return true
   }
 
@@ -113,15 +111,12 @@ class Game extends React.Component {
           clear = false
           break
         }
-      if (clear)
-        squares[y] = null
+      if (clear) squares[y] = null
     })
     let y = 0
     while (y < squares.length)
-      if (!squares[y])
-        squares.splice(y, 1)
-      else
-        y++
+      if (!squares[y]) squares.splice(y, 1)
+      else y++
     for (; y < this.field.height; y++)
       squares.unshift(generateArray(this.field.width, null))
 
@@ -144,8 +139,7 @@ class Game extends React.Component {
   }
 
   handleKeyDown(event) {
-    if (!this.doesGameRun)
-      return
+    if (!this.doesGameRun) return
 
     const key = {
       32: "space",
@@ -176,8 +170,7 @@ class Game extends React.Component {
   }
 
   startClock() {
-    if (this.timerID)
-      return
+    if (this.timerID) return
 
     this.timerID = setInterval(this.tick.bind(this), this.timerInterval)
   }
@@ -198,7 +191,11 @@ class Game extends React.Component {
     const { mino, squares, loader } = this.state
     return (
       <div tabIndex="0" onKeyDown={this.handleKeyDown}>
-        <Modal onClick={this.startGame} hidden={this.isModalHidden} message="click to start" />
+        <Modal
+          onClick={this.startGame}
+          hidden={this.isModalHidden}
+          message="click to start"
+        />
         <Stage
           visible={this.isGameVisible}
           width={(this.field.width + this.nextPane.width) * unit}
@@ -209,8 +206,22 @@ class Game extends React.Component {
           }
         >
           <Layer>
-            <Field x={0} y={0} unit={unit} width={this.field.width} height={this.field.height} mino={mino} squares={squares} />
-            <NextPane x={this.field.width * unit} y={0} width={this.nextPane.width * unit} height={this.nextPane.width * unit * this.nextPane.queueSize} loader={loader} />
+            <Field
+              x={0}
+              y={0}
+              unit={unit}
+              width={this.field.width}
+              height={this.field.height}
+              mino={mino}
+              squares={squares}
+            />
+            <NextPane
+              x={this.field.width * unit}
+              y={0}
+              width={this.nextPane.width * unit}
+              height={this.nextPane.width * unit * this.nextPane.queueSize}
+              loader={loader}
+            />
           </Layer>
         </Stage>
       </div>

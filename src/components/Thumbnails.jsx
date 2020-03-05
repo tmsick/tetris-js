@@ -2,14 +2,13 @@ import { max, min } from "lodash"
 import React from "react"
 import { Group } from "react-konva"
 import OutsetSquare from "./OutsetSquare"
-import { getHexColor } from '../util'
+import { getHexColor } from "../util"
 import Vector, { e1, e2 } from "../vector"
 import * as Variants from "../tetromino/variants"
 
 export function generateThumbnails() {
   const minoes = []
-  for (const [_, V] of Object.entries(Variants))
-    minoes.push(new V())
+  for (const [_, V] of Object.entries(Variants)) minoes.push(new V())
   let maxWidth = 0
   let maxHeight = 0
   for (const mino of minoes) {
@@ -38,11 +37,25 @@ export function generateThumbnails() {
         .sub(centerVector)
         .mul(unit)
         .add(squareCenterVector)
-        .sub(e1.div(2).add(e2.div(2)).mul(unit))
+        .sub(
+          e1
+            .div(2)
+            .add(e2.div(2))
+            .mul(unit)
+        )
     )
     thumbnails[mino.name] = ({ x, y, size }) => (
       <Group x={x} y={y} width={size} height={size}>
-        {vectors.map(v => (<OutsetSquare key={v.id} x={v.x * size} y={v.y * size} width={unit * size} height={unit * size} fill={getHexColor(mino.color)} />))}
+        {vectors.map(v => (
+          <OutsetSquare
+            key={v.id}
+            x={v.x * size}
+            y={v.y * size}
+            width={unit * size}
+            height={unit * size}
+            fill={getHexColor(mino.color)}
+          />
+        ))}
       </Group>
     )
   }

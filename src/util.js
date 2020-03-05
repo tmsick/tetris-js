@@ -1,4 +1,4 @@
-import { isFunction } from 'lodash'
+import { isFunction } from "lodash"
 
 export function getHexColor(n) {
   const radix = 0x10
@@ -8,7 +8,6 @@ export function getHexColor(n) {
 
 export function generateArray(length, item) {
   const array = new Array(length)
-  for (let i = 0; i < length; i++)
-    array[i] = isFunction(item) ? item() : item
+  for (let i = 0; i < length; i++) array[i] = isFunction(item) ? item() : item
   return array
 }

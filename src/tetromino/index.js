@@ -4,7 +4,15 @@ import { e1, e2 } from "../vector"
  * Tetromino abstract class
  */
 class Tetromino {
-  constructor(name, color, shapeVectors, scale, coreIndex, fixPosture = vector => vector, posture = 0) {
+  constructor(
+    name,
+    color,
+    shapeVectors,
+    scale,
+    coreIndex,
+    fixPosture = vector => vector,
+    posture = 0
+  ) {
     this.name = name
     this.color = color
     this.shapeVectors = shapeVectors
@@ -17,7 +25,15 @@ class Tetromino {
   }
 
   copy() {
-    const copied = new Tetromino(this.name, this.color, this.shapeVectors, this.scale, this.coreIndex, this.fixPosture, this.posture)
+    const copied = new Tetromino(
+      this.name,
+      this.color,
+      this.shapeVectors,
+      this.scale,
+      this.coreIndex,
+      this.fixPosture,
+      this.posture
+    )
     copied.move(this.position)
     return copied
   }
@@ -67,7 +83,17 @@ class Tetromino {
    *   posture 0      posture 1      posture 2     posture 3
    */
   generatePostures() {
-    const shiftVectors = [[0, 0], [0, 1], [1, 1], [1, 0]].map(([x, y]) => e1.mul(x).add(e2.mul(y)).mul(this.scale))
+    const shiftVectors = [
+      [0, 0],
+      [0, 1],
+      [1, 1],
+      [1, 0]
+    ].map(([x, y]) =>
+      e1
+        .mul(x)
+        .add(e2.mul(y))
+        .mul(this.scale)
+    )
     const rotationUnit = Math.PI / 2
     const postures = []
     for (let p = 0; p < 4; p++) {
