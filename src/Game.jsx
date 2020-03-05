@@ -190,11 +190,7 @@ class Game extends React.Component {
     const { mino, squares, loader } = this.state
     return (
       <div tabIndex="0" onKeyDown={this.handleKeyDown}>
-        <Modal
-          onClick={this.startGame}
-          hidden={this.isModalHidden}
-          message="click to start"
-        />
+        <Modal onClick={this.startGame} hidden={this.isModalHidden} />
         <Stage
           visible={this.isGameVisible}
           width={(this.field.width + this.nextPane.width) * unit}
