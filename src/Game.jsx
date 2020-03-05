@@ -142,7 +142,6 @@ class Game extends React.Component {
     if (!this.doesGameRun) return
 
     const key = {
-      32: "space",
       37: "left arrow",
       38: "up arrow",
       39: "right arrow",
@@ -150,7 +149,7 @@ class Game extends React.Component {
     }
 
     switch (key[event.keyCode]) {
-      case "space":
+      case "up arrow":
         this.rotate()
         break
       case "left arrow":
