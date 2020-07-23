@@ -20,7 +20,7 @@
   "dependencies": {
     "chroma-js": "^2.1.0",
     "konva": "^4.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mathjs": "^6.3.0",
     "react-konva": "^16.10.1-0"
   },
