@@ -6,7 +6,7 @@ Play at [tetris.tmsick.me](https://tetris.tmsick.me)
 
 ```
 $ yarn install
-$ yarn start:dev
+$ yarn dev
 ```
 
 then go to `localhost:8080` in you browser.
