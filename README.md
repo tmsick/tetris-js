@@ -1,4 +1,4 @@
-# Tetris implemented with JavaScript
+# Tetris JS
 
 Play at https://stupefied-goldwasser-d7e873.netlify.app
 
