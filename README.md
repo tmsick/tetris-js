@@ -1,6 +1,6 @@
 # Tetris implemented with JavaScript
 
-Play at [tetris.tmsick.me](https://tetris.tmsick.me)
+Play at https://stupefied-goldwasser-d7e873.netlify.app
 
 ## Development
 
