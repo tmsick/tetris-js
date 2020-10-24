@@ -1,14 +1,14 @@
 import React from "react"
+import { Variants } from "./tetromino/variants/index.js"
+import { Field } from "./components/Field.jsx"
+import { Loader } from "./loader.js"
+import { Modal } from "./components/Modal.jsx"
+import { NextPane } from "./components/NextPane.jsx"
 import { Stage, Layer } from "react-konva"
-import Loader from "./loader"
-import { getHexColor, generateArray } from "./util"
-import Vector from "./vector"
-import Field from "./components/Field"
-import Modal from "./components/Modal"
-import NextPane from "./components/NextPane"
-import * as Variants from "./tetromino/variants"
+import { Vector } from "./vector.js"
+import { getHexColor, generateArray } from "./util.js"
 
-class Game extends React.Component {
+export class Game extends React.Component {
   constructor(props) {
     super(props)
 
@@ -223,5 +223,3 @@ class Game extends React.Component {
     )
   }
 }
-
-export default Game

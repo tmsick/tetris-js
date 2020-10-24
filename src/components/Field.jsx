@@ -1,10 +1,10 @@
 import React from "react"
 import { Group } from "react-konva"
-import OutsetSquare from "./OutsetSquare"
-import { getHexColor } from "../util"
-import Vector from "../vector"
+import { OutsetSquare } from "./OutsetSquare.jsx"
+import { Vector } from "../vector.js"
+import { getHexColor } from "../util.js"
 
-function Field({ x, y, unit, width, height, mino, squares }) {
+export function Field({ x, y, unit, width, height, mino, squares }) {
   const rects = []
   for (const { x, y, id } of mino.getVectors())
     rects.push(
@@ -41,5 +41,3 @@ function Field({ x, y, unit, width, height, mino, squares }) {
     </Group>
   )
 }
-
-export default Field

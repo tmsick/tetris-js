@@ -1,8 +1,8 @@
 import React from "react"
 import { Group } from "react-konva"
-import Thumbnails from "./Thumbnails"
+import { Thumbnails } from "./Thumbnails.jsx"
 
-function NextPane({ x, y, width, height, loader }) {
+export function NextPane({ x, y, width, height, loader }) {
   return (
     <Group x={x} y={y} width={width} height={height}>
       {loader.queue.slice(0, loader.size).map((mino, i) => {
@@ -12,5 +12,3 @@ function NextPane({ x, y, width, height, loader }) {
     </Group>
   )
 }
-
-export default NextPane

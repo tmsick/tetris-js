@@ -1,6 +1,6 @@
 import React from "react"
 
-function Modal({ hidden, onClick }) {
+export function Modal({ hidden, onClick }) {
   return (
     <div hidden={hidden}>
       <h1>Tetris</h1>
@@ -17,5 +17,3 @@ function Modal({ hidden, onClick }) {
     </div>
   )
 }
-
-export default Modal

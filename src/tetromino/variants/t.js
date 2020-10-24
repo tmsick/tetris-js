@@ -1,12 +1,12 @@
-import Tetromino from ".."
-import { e1, e2 } from "../../vector"
+import { Tetromino } from "../index.js"
+import { e1, e2 } from "../../vector.js"
 
 //     +---+
 //     |   |
 // +---+---+---+
 // |   |   |   |
 // +---+---+---+
-class T extends Tetromino {
+export class T extends Tetromino {
   constructor() {
     const name = "T"
     const color = 0x9c27b0
@@ -21,5 +21,3 @@ class T extends Tetromino {
     super(name, color, shapeVectors, scale, coreIndex)
   }
 }
-
-export default T

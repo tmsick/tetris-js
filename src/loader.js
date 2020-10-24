@@ -6,7 +6,7 @@ import { shuffle } from "lodash"
  * `size`. The `hook` function is called with the variant as its argument when
  * the variant is popped out of the queue.
  */
-class Loader {
+export class Loader {
   constructor(variants, size, hook = variant => variant) {
     this.variants = variants
     this.size = size
@@ -26,5 +26,3 @@ class Loader {
       this.queue = this.queue.concat(shuffle(this.variants))
   }
 }
-
-export default Loader

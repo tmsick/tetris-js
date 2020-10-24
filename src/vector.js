@@ -1,6 +1,6 @@
 import * as math from "mathjs"
 
-class Vector {
+export class Vector {
   constructor(x, y) {
     this.x = x
     this.y = y
@@ -52,4 +52,3 @@ class Vector {
 
 export const e1 = new Vector(1, 0)
 export const e2 = new Vector(0, 1)
-export default Vector

@@ -1,9 +1,9 @@
-import { e1, e2 } from "../vector"
+import { e1, e2 } from "../vector.js"
 
 /**
  * Tetromino abstract class
  */
-class Tetromino {
+export class Tetromino {
   constructor(
     name,
     color,
@@ -117,5 +117,3 @@ class Tetromino {
     return postures
   }
 }
-
-export default Tetromino

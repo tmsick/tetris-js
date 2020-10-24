@@ -1,7 +1,9 @@
-export { default as I } from "./i"
-export { default as O } from "./o"
-export { default as S } from "./s"
-export { default as Z } from "./z"
-export { default as J } from "./j"
-export { default as L } from "./l"
-export { default as T } from "./t"
+import { I } from "./i.js"
+import { J } from "./j.js"
+import { L } from "./l.js"
+import { O } from "./o.js"
+import { S } from "./s.js"
+import { T } from "./t.js"
+import { Z } from "./z.js"
+
+export const Variants = { I, J, L, O, S, T, Z }

@@ -1,10 +1,12 @@
-import { max, min } from "lodash"
 import React from "react"
+import { Variants } from "../tetromino/variants/index.js"
 import { Group } from "react-konva"
-import OutsetSquare from "./OutsetSquare"
-import { getHexColor } from "../util"
-import Vector, { e1, e2 } from "../vector"
-import * as Variants from "../tetromino/variants"
+import { OutsetSquare } from "./OutsetSquare.jsx"
+import { Vector, e1, e2 } from "../vector.js"
+import { getHexColor } from "../util.js"
+import { max, min } from "lodash"
+
+export const Thumbnails = generateThumbnails()
 
 export function generateThumbnails() {
   const minoes = []
@@ -61,5 +63,3 @@ export function generateThumbnails() {
   }
   return thumbnails
 }
-
-export default generateThumbnails()
